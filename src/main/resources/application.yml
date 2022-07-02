@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    username: recipes_rw
+    url: jdbc:sqlserver://recipes-mysql.database.windows.net:1433;database=recipes
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    password: '@Magic009@'
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.SQLServer2012Dialect
+      ddl-auto: update
+    show-sql: 'true'
+
+server:
+  port: '8082'
+
+main:
+    allow-circular-references: 'true'
+
