@@ -96,7 +96,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<finalName>recipes-mysql</finalName>
+					<finalName>recipes-service</finalName>
 				</configuration>
 			</plugin>
 		</plugins>
