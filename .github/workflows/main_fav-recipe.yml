@@ -50,4 +50,4 @@ jobs:
           app-name: 'fav-recipe'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0B1D1CDAE37A4F09ABFE11A3DA59311B }}
-          package: '*.jar'
+          package: 'recipes-mysql.jar'
