@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-<title>Favourite Recipes Management</title>
+<title>Favourite Recipe Management</title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -49,7 +49,7 @@
 					}  
 					tr.push('<td>' + usedIngredient + '</td>');
 					tr.push('<td>' + json[i].preparedAt + '</td>');
-					tr.push('<td>&nbsp;<button class=\'delete\' id=' + json[i].recipesId + '>Remove Recipe</button> &nbsp;</td>');
+					tr.push('<td>&nbsp;<button class=\'delete\' id=' + json[i].recipesId + '>Delete</button> &nbsp;</td>');
 					tr.push('</tr>');
 				}
 				$('#table1').append($(tr.join('')));
@@ -60,7 +60,7 @@
 				for (var i = 0; i < json.length; i++) {
 					tr.push('<tr>');
 					tr.push('<td>' + json[i].ingredientName + '</td>');
-					tr.push('<td>&nbsp;<button class=\'deleteIngredient\' ingredientId=' + json[i].ingredientId + '>Remove Ingredient</button> &nbsp;</td>');
+					tr.push('<td>&nbsp;<button class=\'deleteIngredient\' ingredientId=' + json[i].ingredientId + '>Delete</button> &nbsp;</td>');
 					tr.push('</tr>');
 				}
 				$('#table2').append($(tr.join('')));
@@ -213,28 +213,39 @@ textarea:focus, input:focus {
 	transform: translate(-50%, -50%);
 }
 
-table {
+table.table1 {
 	width: 800px;
 	border-collapse: collapse;
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0);
 }
 
+table.table2 {
+	width: 300px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0);
+}
+tr:hover {
+          background-color: #51C9C9;
+        }
+
 th, td {
 	padding: 5px;
 	background-color: rgba(255, 255, 255, 0.5);
-	color: #612518;
+	color: #581845;
 }
-	
+
 th {
 	text-align: left;
 }
+
 </style>
 </head>
 <body>
 
 
-	<h1>Recipes Management</h1>
+	<h1>Favourite Recipe Management</h1>
 
 	<h2>Ingredient Management</h2>
 	<form id="addIngredient" action="#">
@@ -259,14 +270,15 @@ th {
 		</div>
 	</form>
 
-	<table id="table2" border="1" cellspacing="0" cellpadding="5">
+	<table id="table2" class="table2" border="1" cellspacing="0"
+		cellpadding="5">
 		<tr>
 			<th>Ingredient Name</th>
 			<th>Action</th>
 		</tr>
 	</table>
 
-	<h2>Favourite Recipes Management</h2>
+	<h2>Recipe Management</h2>
 	<form id="add" action="#">
 		<div class="w3-container">
 
@@ -275,7 +287,7 @@ th {
 					<div class="w3-container">
 						<div id="msg" />
 						<p>
-							<label>Recipes Name</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<label>Recipes Name</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<input type="text" id="recipesName" name="recipesName">
 						</p>
 						<p>
@@ -283,17 +295,17 @@ th {
 							<input type="text" id="recipesType" name="recipesType">
 						</p>
 						<p>
-							<label>No Of Person</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<label>No of Persons</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<input type="text" id="noOfPerson" name="noOfPerson">
+						</p>
+						<p>
+							<label>Select Ingredient</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select
+								name="usedingredient" id="usedingredient" multiple size="10">
+							</select>
 						</p>
 						<p>
 							<label>Cooking Instruction</label> <input type="text"
 								id="cookingInstruction" name="cookingInstruction">
-						</p>
-						<p>
-							<label>Select Ingredient</label>&nbsp;&nbsp;&nbsp;&nbsp;; <select
-								name="usedingredient" id="usedingredient" multiple size="10">
-							</select>
 						</p>
 						<p>
 							<input type="submit" id="addNew" value="Add Recipe">
@@ -304,7 +316,7 @@ th {
 		</div>
 	</form>
 
-	<table id="table1" border="1" cellspacing="0" cellpadding="5">
+	<table id="table1" class="table1" border="1">
 		<tr>
 			<th>Recipe Name</th>
 			<th>Recipes Type</th>

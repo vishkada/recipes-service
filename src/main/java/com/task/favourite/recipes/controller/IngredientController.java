@@ -67,6 +67,7 @@ public class IngredientController {
 	                responseCode = "200",
 	                content = @Content(mediaType = "application/json", schema = @Schema(implementation = Ingredients.class))
 	            ),
+	            @ApiResponse(description = "Found", responseCode = "302", content = @Content),
 	            @ApiResponse(description = "Unauthorized", responseCode = "403", content = @Content),
 	            @ApiResponse(description = "Internal error", responseCode = "500", content = @Content)
 	        }

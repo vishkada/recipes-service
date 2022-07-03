@@ -74,7 +74,7 @@ public class RecipesController {
 	                content = @Content(mediaType = "application/json", schema = @Schema(implementation = Recipes.class))
 	            ),
 	            @ApiResponse(description = "Unauthorized", responseCode = "403", content = @Content),
-	            @ApiResponse(description = "Not found", responseCode = "404", content = @Content),
+	            @ApiResponse(description = "Found", responseCode = "302", content = @Content),
 	            @ApiResponse(description = "Internal error", responseCode = "500", content = @Content)
 	        }
 	    )
