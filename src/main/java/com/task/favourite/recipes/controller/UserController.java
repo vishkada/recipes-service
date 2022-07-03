@@ -31,7 +31,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@PostMapping(value = "/manage/user")
+	@PostMapping(value = "/user")
 	@Operation(
 	        summary = "Add new user",
 	        description = "Add new user",

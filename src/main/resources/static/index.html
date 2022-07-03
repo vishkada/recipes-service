@@ -21,7 +21,7 @@
 <script type="text/javascript">
 		$(document).ready(function() {
 			var ingredient=[];
-			$.getJSON('https://fav-recipe.azurewebsites.net/view/ingredients', function(json) {
+			$.getJSON('https://fav-recipe.azurewebsites.net/ingredients', function(json) {
 				var x = document.getElementById("usedingredient");
 				for (var i = 0; i < json.length; i++) {
 					 var tempIngredient = new Object();
@@ -35,7 +35,7 @@
 				}
 			});
 			
-			$.getJSON('https://fav-recipe.azurewebsites.net/view/recipes', function(json) {
+			$.getJSON('https://fav-recipe.azurewebsites.net/recipes', function(json) {
 				var tr=[];
 				for (var i = 0; i < json.length; i++) {
 					tr.push('<tr>');
@@ -55,7 +55,7 @@
 				$('#table1').append($(tr.join('')));
 			});
 
-			$.getJSON('https://fav-recipe.azurewebsites.net/view/ingredients', function(json) {
+			$.getJSON('https://fav-recipe.azurewebsites.net/ingredients', function(json) {
 				var tr=[];
 				for (var i = 0; i < json.length; i++) {
 					tr.push('<tr>');
@@ -76,7 +76,7 @@
 				$.ajax({
 					type: "POST",
 					contentType: "application/json; charset=utf-8",
-					url: "https://fav-recipe.azurewebsites.net/manage/ingredient",
+					url: "https://fav-recipe.azurewebsites.net/ingredient",
 					data: JSON.stringify(ingredient),
 					cache: false,
 					success: function(result) {
@@ -96,7 +96,7 @@
 						var parent = $(this).parent().parent();
 						$.ajax({
 							type: "DELETE",
-							url: "https://fav-recipe.azurewebsites.net/manage/ingredient/id/" + id,
+							url: "https://fav-recipe.azurewebsites.net/ingredient/id/" + id,
 							cache: false,
 							success: function() {
 								parent.fadeOut('slow', function() {
@@ -140,12 +140,12 @@
 				$.ajax({
 					type: "POST",
 					contentType: "application/json; charset=utf-8",
-					url: "https://fav-recipe.azurewebsites.net/manage/recipe",
+					url: "https://fav-recipe.azurewebsites.net/recipe",
 					data: JSON.stringify(recipes),
 					cache: false,
 					success: function(result) {
-						$("#msg").html( "<span style='color: green'>Company added successfully</span>" );
-						window.setTimeout(function(){location.reload()},1000)
+						$("#msg").html( "<span style='color: green'>Recipe added successfully</span>" );
+						window.setTimeout(function(){location.reload()},2000)
 					},
 					error: function(err) {
 						//$("#msg").html( "<span style='color: red'>Name is required</span>" );
@@ -154,12 +154,12 @@
 			}); 
 			
 			 $(document).delegate('.delete', 'click', function() { 
-				if (confirm('Are you sure than you want to delete recipe?')) {
+				if (confirm('Are you sure that you want to delete recipe?')) {
 					var id = $(this).attr('id');
 					var parent = $(this).parent().parent();
 					$.ajax({
 						type: "DELETE",
-						url: "https://fav-recipe.azurewebsites.net/manage/recipe/id/" + id,
+						url: "https://fav-recipe.azurewebsites.net/recipe/id/" + id,
 						cache: false,
 						success: function() {
 							parent.fadeOut('slow', function() {

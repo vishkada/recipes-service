@@ -40,7 +40,7 @@ public class RecipesController {
 	@Autowired
 	private RecipesService recepesService;
 	
-	@GetMapping(value = "/view/recipes")
+	@GetMapping(value = "/recipes")
 	@Operation(
 	        summary = "Fetch all recipes",
 	        description = "Get list of all available Recipes",
@@ -62,7 +62,7 @@ public class RecipesController {
 		return  new ResponseEntity<List<RecipesDTO>>(recipesList, HttpStatus.OK);		
 	}
 	
-	@PostMapping(value = "/manage/recipe")
+	@PostMapping(value = "/recipe")
 	@Operation(
 	        summary = "Add new recipe",
 	        description = "Add new recipe to recpies",
@@ -84,7 +84,7 @@ public class RecipesController {
 		 return "Recipe is added successfully";
 	}
 	
-	@PutMapping(value = "/manage/recipe")
+	@PutMapping(value = "/recipe")
 	@Operation(
 	        summary = "Update exising recipe",
 	        description = "Updating existing recipe",
@@ -105,7 +105,7 @@ public class RecipesController {
 		 return "Recipe successfully updated!";
 	}
 	
-	@DeleteMapping(value = "/manage/recipe/id/{id}")
+	@DeleteMapping(value = "/recipe/id/{id}")
 	@Operation(
 	        summary = "Delete recipe by Id",
 	        description = "Delete recipe by recpie id",
@@ -127,7 +127,7 @@ public class RecipesController {
 		 return "Recipe is deleted successfully";
 	}
 	
-	@DeleteMapping(value = "/manage/recipe/name/{recipeName}")
+	@DeleteMapping(value = "/recipe/name/{recipeName}")
 	@Operation(
 	        summary = "Delete recipe by name",
 	        description = "Delete recipe by recpie name",

@@ -2,6 +2,7 @@ package com.task.favourite.recipes.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -47,10 +48,11 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter {
 		.csrf() 
 		.disable()
 		.authorizeRequests()
-		.antMatchers("/manage/**").hasAnyAuthority(CommonConstants.ROLE_ADMIN)
-		.antMatchers("/view/**").hasAnyAuthority(CommonConstants.ROLE_VIEWER,CommonConstants.ROLE_ADMIN)
+		.antMatchers(HttpMethod.DELETE).hasAnyAuthority(CommonConstants.ROLE_ADMIN)
+		.antMatchers(HttpMethod.POST).hasAnyAuthority(CommonConstants.ROLE_ADMIN)
+		.antMatchers(HttpMethod.PUT).hasAnyAuthority(CommonConstants.ROLE_ADMIN)
+		.antMatchers(HttpMethod.GET).hasAnyAuthority(CommonConstants.ROLE_ADMIN, CommonConstants.ROLE_VIEWER)
 		.anyRequest().authenticated()
-		.and()
-		.httpBasic();
+		.and().httpBasic();
 	}
 }

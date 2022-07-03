@@ -35,7 +35,7 @@ public class IngredientController {
 	@Autowired
 	private IngredientService ingredientService;
 	
-	@GetMapping(value = "/view/ingredients")
+	@GetMapping(value = "/ingredients")
 	@Operation(
 	        summary = "Fetch all ingradients",
 	        description = "Get list of all available Ingradients",
@@ -72,7 +72,7 @@ public class IngredientController {
 	            @ApiResponse(description = "Internal error", responseCode = "500", content = @Content)
 	        }
 	    )
-	@PostMapping(value = "/manage/ingredient")
+	@PostMapping(value = "/ingredient")
 	public IngredientDTO addIngredient(@RequestBody IngredientDTO ingredientDTO)  throws IngredientException {
 		log.info(" In addIngredient() of  IngredientController ");
 		return ingredientService.saveIngredient(ingredientDTO);
@@ -93,7 +93,7 @@ public class IngredientController {
 	            @ApiResponse(description = "Internal error", responseCode = "500", content = @Content)
 	        }
 	    )
-	@DeleteMapping(value = "/manage/ingredient/id/{id}")
+	@DeleteMapping(value = "/ingredient/id/{id}")
 	public String deleteIngredient(@PathVariable("id") Long ingredientId) throws IngredientException{
 		log.info(" In deleteIngredient() of  IngredientController ");
 		 ingredientService.deleteIngredient(ingredientId);
@@ -116,7 +116,7 @@ public class IngredientController {
 	            @ApiResponse(description = "Internal error", responseCode = "500", content = @Content)
 	        }
 	    )
-	@DeleteMapping(value = "/manage/ingredient/name/{ingredientName}")
+	@DeleteMapping(value = "/ingredient/name/{ingredientName}")
 	public String deleteIngredientByName(@PathVariable("ingredientName") String ingredientName) throws IngredientException{
 		log.info(" In deleteIngredient() of  IngredientController ");
 		 ingredientService.deleteIngredientByName(ingredientName);
