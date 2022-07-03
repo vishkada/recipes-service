@@ -16,3 +16,7 @@ server:
 main:
     allow-circular-references: 'true'
 
+management:
+  endpoints:
+    web:
+      base-path: /management
