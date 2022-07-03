@@ -28,7 +28,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	  if(optionalUser.isPresent()) {
         	 users  = optionalUser.get();
 	  }  else {
-        	throw new UsernameNotFoundException("User Name is not Found");
+        	throw new UsernameNotFoundException("Use not found for the given user name");
         } 
        return new RecipeUserDetails(users);
   }

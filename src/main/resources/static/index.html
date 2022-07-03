@@ -21,7 +21,7 @@
 <script type="text/javascript">
 		$(document).ready(function() {
 			var ingredient=[];
-			$.getJSON('http://localhost:8082/view/ingredients', function(json) {
+			$.getJSON('https://fav-recipe.azurewebsites.net/view/ingredients', function(json) {
 				var x = document.getElementById("usedingredient");
 				for (var i = 0; i < json.length; i++) {
 					 var tempIngredient = new Object();
@@ -35,7 +35,7 @@
 				}
 			});
 			
-			$.getJSON('http://localhost:8082/view/recipes', function(json) {
+			$.getJSON('https://fav-recipe.azurewebsites.net/view/recipes', function(json) {
 				var tr=[];
 				for (var i = 0; i < json.length; i++) {
 					tr.push('<tr>');
@@ -55,7 +55,7 @@
 				$('#table1').append($(tr.join('')));
 			});
 
-			$.getJSON('http://localhost:8082/view/ingredients', function(json) {
+			$.getJSON('https://fav-recipe.azurewebsites.net/view/ingredients', function(json) {
 				var tr=[];
 				for (var i = 0; i < json.length; i++) {
 					tr.push('<tr>');
@@ -76,7 +76,7 @@
 				$.ajax({
 					type: "POST",
 					contentType: "application/json; charset=utf-8",
-					url: "http://localhost:8082/manage/ingredient",
+					url: "https://fav-recipe.azurewebsites.net/manage/ingredient",
 					data: JSON.stringify(ingredient),
 					cache: false,
 					success: function(result) {
@@ -96,7 +96,7 @@
 						var parent = $(this).parent().parent();
 						$.ajax({
 							type: "DELETE",
-							url: "http://localhost:8082/manage/ingredient/id/" + id,
+							url: "https://fav-recipe.azurewebsites.net/manage/ingredient/id/" + id,
 							cache: false,
 							success: function() {
 								parent.fadeOut('slow', function() {
@@ -140,7 +140,7 @@
 				$.ajax({
 					type: "POST",
 					contentType: "application/json; charset=utf-8",
-					url: "http://localhost:8082/manage/recipe",
+					url: "https://fav-recipe.azurewebsites.net/manage/recipe",
 					data: JSON.stringify(recipes),
 					cache: false,
 					success: function(result) {
@@ -159,7 +159,7 @@
 					var parent = $(this).parent().parent();
 					$.ajax({
 						type: "DELETE",
-						url: "http://localhost:8082/manage/recipe/id/" + id,
+						url: "https://fav-recipe.azurewebsites.net/manage/recipe/id/" + id,
 						cache: false,
 						success: function() {
 							parent.fadeOut('slow', function() {
