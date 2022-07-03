@@ -21,7 +21,7 @@
 <script type="text/javascript">
 		$(document).ready(function() {
 			var ingredient=[];
-			$.getJSON('https://fav-recipe.azurewebsites.net/view/ingredients', function(json) {
+			$.getJSON('http://localhost:8082/view/ingredients', function(json) {
 				var x = document.getElementById("usedingredient");
 				for (var i = 0; i < json.length; i++) {
 					 var tempIngredient = new Object();
@@ -35,7 +35,7 @@
 				}
 			});
 			
-			$.getJSON('https://fav-recipe.azurewebsites.net/view/recipes', function(json) {
+			$.getJSON('http://localhost:8082/view/recipes', function(json) {
 				var tr=[];
 				for (var i = 0; i < json.length; i++) {
 					tr.push('<tr>');
@@ -55,7 +55,7 @@
 				$('#table1').append($(tr.join('')));
 			});
 
-			$.getJSON('https://fav-recipe.azurewebsites.net/view/ingredients', function(json) {
+			$.getJSON('http://localhost:8082/view/ingredients', function(json) {
 				var tr=[];
 				for (var i = 0; i < json.length; i++) {
 					tr.push('<tr>');
@@ -76,7 +76,7 @@
 				$.ajax({
 					type: "POST",
 					contentType: "application/json; charset=utf-8",
-					url: "https://fav-recipe.azurewebsites.net/manage/ingredient",
+					url: "http://localhost:8082/manage/ingredient",
 					data: JSON.stringify(ingredient),
 					cache: false,
 					success: function(result) {
@@ -90,13 +90,13 @@
 			
 			
 			 $(document).delegate('.deleteIngredient', 'click', function() { 
-					if (confirm('Do you really want to delete record?')) {
+					if (confirm('Are you sure that you want to delete ingredient?')) {
 						var id = $(this).attr('ingredientId');
 						console.log(id);
 						var parent = $(this).parent().parent();
 						$.ajax({
 							type: "DELETE",
-							url: "https://fav-recipe.azurewebsites.net/manage/ingredient/id/" + id,
+							url: "http://localhost:8082/manage/ingredient/id/" + id,
 							cache: false,
 							success: function() {
 								parent.fadeOut('slow', function() {
@@ -140,7 +140,7 @@
 				$.ajax({
 					type: "POST",
 					contentType: "application/json; charset=utf-8",
-					url: "https://fav-recipe.azurewebsites.net/manage/recipe",
+					url: "http://localhost:8082/manage/recipe",
 					data: JSON.stringify(recipes),
 					cache: false,
 					success: function(result) {
@@ -154,12 +154,12 @@
 			}); 
 			
 			 $(document).delegate('.delete', 'click', function() { 
-				if (confirm('Do you really want to delete record?')) {
+				if (confirm('Are you sure than you want to delete recipe?')) {
 					var id = $(this).attr('id');
 					var parent = $(this).parent().parent();
 					$.ajax({
 						type: "DELETE",
-						url: "https://fav-recipe.azurewebsites.net/manage/recipe/id/" + id,
+						url: "http://localhost:8082/manage/recipe/id/" + id,
 						cache: false,
 						success: function() {
 							parent.fadeOut('slow', function() {
