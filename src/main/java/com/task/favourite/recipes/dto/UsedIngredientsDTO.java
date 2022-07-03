@@ -19,6 +19,6 @@ public class UsedIngredientsDTO implements Serializable {
 	private static final long serialVersionUID = -1928009079844618462L;
 	private Integer id;
 	private Integer usedIngredientId;
-	private String usedIngredientsName;	
+	private String usedIngredientName;	
 	
 }

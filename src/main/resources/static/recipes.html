@@ -1,27 +1,32 @@
 <!doctype html>
 <html>
 <head>
-	<title>Favourite Recipes Management</title>
-	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<title>Favourite Recipes Management</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-	
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  
-	<script type="text/javascript">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script type="text/javascript">
 		$(document).ready(function() {
 			var ingredient=[];
-			$.getJSON('http://localhost:8082/view/ingredients', function(json) {
-				var x = document.getElementById("usedingredients");
+			$.getJSON('https://fav-recipe.azurewebsites.net/view/ingredients', function(json) {
+				var x = document.getElementById("usedingredient");
 				for (var i = 0; i < json.length; i++) {
 					 var tempIngredient = new Object();
 					tempIngredient.usedIngredientId=json[i].ingredientId;
-					tempIngredient.usedingredientName=json[i].ingredientName;
+					tempIngredient.usedIngredientName=json[i].ingredientName;
 					ingredient.push(tempIngredient); 
 				 	 var option = document.createElement("option");
 				  	option.text =json[i].ingredientName;
@@ -30,7 +35,7 @@
 				}
 			});
 			
-			$.getJSON('http://localhost:8082/view/recipes', function(json) {
+			$.getJSON('https://fav-recipe.azurewebsites.net/view/recipes', function(json) {
 				var tr=[];
 				for (var i = 0; i < json.length; i++) {
 					tr.push('<tr>');
@@ -40,7 +45,7 @@
 					tr.push('<td>' + json[i].cookingInstruction + '</td>');
 					var usedIngredient="";
 					for (var j = 0; j < json[i].usedingredients.length; j++) {
-						usedIngredient= usedIngredient.concat( (j+1) +". "+ json[i].usedingredients[j].usedingredientName +"<br> "); 
+						usedIngredient= usedIngredient.concat( (j+1) +". "+ json[i].usedingredients[j].usedIngredientName +"<br> "); 
 					}  
 					tr.push('<td>' + usedIngredient + '</td>');
 					tr.push('<td>' + json[i].preparedAt + '</td>');
@@ -50,7 +55,7 @@
 				$('#table1').append($(tr.join('')));
 			});
 
-			$.getJSON('http://localhost:8082/view/ingredients', function(json) {
+			$.getJSON('https://fav-recipe.azurewebsites.net/view/ingredients', function(json) {
 				var tr=[];
 				for (var i = 0; i < json.length; i++) {
 					tr.push('<tr>');
@@ -71,7 +76,7 @@
 				$.ajax({
 					type: "POST",
 					contentType: "application/json; charset=utf-8",
-					url: "http://localhost:8082/manage/ingredient",
+					url: "https://fav-recipe.azurewebsites.net/manage/ingredient",
 					data: JSON.stringify(ingredient),
 					cache: false,
 					success: function(result) {
@@ -91,7 +96,7 @@
 						var parent = $(this).parent().parent();
 						$.ajax({
 							type: "DELETE",
-							url: "http://localhost:8082/manage/ingredient/id/" + id,
+							url: "https://fav-recipe.azurewebsites.net/manage/ingredient/id/" + id,
 							cache: false,
 							success: function() {
 								parent.fadeOut('slow', function() {
@@ -130,12 +135,12 @@
 				recipes.recipesType=recipesType;
 				recipes.noOfPerson=noOfPerson;
 				recipes.cookingInstruction=cookingInstruction;
-				recipes.usedingredient=selectedingredient;
+				recipes.usedingredients=selectedingredient;
 				
 				$.ajax({
 					type: "POST",
 					contentType: "application/json; charset=utf-8",
-					url: "http://localhost:8082/manage/recipe",
+					url: "https://fav-recipe.azurewebsites.net/manage/recipe",
 					data: JSON.stringify(recipes),
 					cache: false,
 					success: function(result) {
@@ -154,7 +159,7 @@
 					var parent = $(this).parent().parent();
 					$.ajax({
 						type: "DELETE",
-						url: "http://localhost:8082/manage/recipe/id/" + id,
+						url: "https://fav-recipe.azurewebsites.net/manage/recipe/id/" + id,
 						cache: false,
 						success: function() {
 							parent.fadeOut('slow', function() {
@@ -173,81 +178,133 @@
 
 		});
 	</script>
+<style>
+html, body {
+	margin: 50;
+	background: linear-gradient(45deg, #49a09d, #5f2c82);
+	font-family: sans-serif;
+	font-weight: 100;
+	color: white;
+}
+
+body {
+	max-width: 1180px;
+	width: 98%;
+	margin: 0px auto;
+	text-align: left;
+}
+
+h1, h2 {
+	color: white;
+}
+
+input, select, textarea {
+	color: black;
+}
+
+textarea:focus, input:focus {
+	color: black;
+}
+
+.container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+table {
+	width: 800px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0);
+}
+
+th, td {
+	padding: 5px;
+	background-color: rgba(255, 255, 255, 0.5);
+	color: #612518;
+}
+	
+th {
+	text-align: left;
+}
+</style>
 </head>
 <body>
 
 
-	<h2>favourite Recipes Management</h2>
-	
-	<h4>ingredient</h4>
-	<form id="addIngredient" action="#" >
-	<div class="w3-container">
- 
-  <div id="id011" class="w3-modal">
-    <div class="w3-modal-content">
-      <div class="w3-container">
-        
-        	<div id="msg"/>
-        <p>
-			<label>Ingredient Name</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="text" id="ingredientName" name="ingredientName">
-		</p>
-		
-		<p>
-			<input type="submit" id="addNewingredient" value="Add Ingredient">
-		</p>
+	<h1>Recipes Management</h1>
+
+	<h2>Ingredient Management</h2>
+	<form id="addIngredient" action="#">
+		<div class="w3-container">
+
+			<div id="id011" class="w3-modal">
+				<div class="w3-modal-content">
+					<div class="w3-container">
+
+						<div id="msg" />
+						<p>
+							<label>Ingredient Name</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="text" id="ingredientName" name="ingredientName">
+						</p>
+
+						<p>
+							<input type="submit" id="addNewingredient" value="Add Ingredient">
+						</p>
+					</div>
+				</div>
+			</div>
 		</div>
-    </div>
-  </div>
-</div>
-</form>
-	
+	</form>
+
 	<table id="table2" border="1" cellspacing="0" cellpadding="5">
 		<tr>
 			<th>Ingredient Name</th>
 			<th>Action</th>
 		</tr>
 	</table>
-	
-	<h2>Favourite Recipes</h2>
-	<form id="add" action="#" >
-	<div class="w3-container">
- 
-  <div id="id01" class="w3-modal">
-    <div class="w3-modal-content">
-      <div class="w3-container">
-	        	<div id="msg"/>
-        <p>
-			<label>Recipes Name</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="text" id="recipesName" name="recipesName">
-		</p>
-		 <p>
-			<label>Recipe Type</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="text" id="recipesType" name="recipesType">
-		</p>	
-		<p>
-			<label>No Of Person</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="text" id="noOfPerson" name="noOfPerson">
-		</p>
-		<p>
-			<label>Cooking Instruction</label>
-			<input type="text" id="cookingInstruction" name="cookingInstruction">
-		</p>
-		<p>
-			<label>Select Ingredient</label>&nbsp;&nbsp;&nbsp;&nbsp;;
-			<select name="usedingredient" id="usedingredient" multiple size="10"  >
-		  </select>
-		</p> 
-		<p>
-			<input type="submit" id="addNew" value="Add Recipe">
-		</p>
-		</div>
-    </div>
-  </div>
-</div>
-</form>
 
-	<table id ="table1" border="1" cellspacing="0" cellpadding="5">
+	<h2>Favourite Recipes Management</h2>
+	<form id="add" action="#">
+		<div class="w3-container">
+
+			<div id="id01" class="w3-modal">
+				<div class="w3-modal-content">
+					<div class="w3-container">
+						<div id="msg" />
+						<p>
+							<label>Recipes Name</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="text" id="recipesName" name="recipesName">
+						</p>
+						<p>
+							<label>Recipe Type</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="text" id="recipesType" name="recipesType">
+						</p>
+						<p>
+							<label>No Of Person</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="text" id="noOfPerson" name="noOfPerson">
+						</p>
+						<p>
+							<label>Cooking Instruction</label> <input type="text"
+								id="cookingInstruction" name="cookingInstruction">
+						</p>
+						<p>
+							<label>Select Ingredient</label>&nbsp;&nbsp;&nbsp;&nbsp;; <select
+								name="usedingredient" id="usedingredient" multiple size="10">
+							</select>
+						</p>
+						<p>
+							<input type="submit" id="addNew" value="Add Recipe">
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+	<table id="table1" border="1" cellspacing="0" cellpadding="5">
 		<tr>
 			<th>Recipe Name</th>
 			<th>Recipes Type</th>
@@ -258,8 +315,8 @@
 			<th>Action</th>
 		</tr>
 	</table>
-	
-	
-	
+
+
+
 </body>
 </html>

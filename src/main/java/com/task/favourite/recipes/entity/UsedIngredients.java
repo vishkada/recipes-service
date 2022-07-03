@@ -27,6 +27,6 @@ public class UsedIngredients {
 	private Integer usedIngredientId;
 	
 	@Column(length = 25)
-	private String usedIngredientsName;	
+	private String usedIngredientName;	
 	
 }

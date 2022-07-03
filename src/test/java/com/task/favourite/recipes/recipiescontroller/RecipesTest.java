@@ -167,10 +167,10 @@ public class RecipesTest {
 	private RecipesDTO getRecipeDTO() {
 		UsedIngredientsDTO usedIn1 = new UsedIngredientsDTO();
 		usedIn1.setUsedIngredientId(1);
-		usedIn1.setUsedIngredientsName("turmuric");
+		usedIn1.setUsedIngredientName("turmuric");
 		UsedIngredientsDTO usedIn2 = new UsedIngredientsDTO();
 		usedIn2.setUsedIngredientId(2);
-		usedIn2.setUsedIngredientsName("Oil");
+		usedIn2.setUsedIngredientName("Oil");
 		Set<UsedIngredientsDTO> set = new HashSet<>();
 		set.add(usedIn1);
 		set.add(usedIn2);
@@ -188,10 +188,10 @@ public class RecipesTest {
 	private Recipes getRecipe() {
 		UsedIngredients usedIn1 = new UsedIngredients();
 		usedIn1.setUsedIngredientId(1);
-		usedIn1.setUsedIngredientsName("turmuric");
+		usedIn1.setUsedIngredientName("turmuric");
 		UsedIngredients usedIn2 = new UsedIngredients();
 		usedIn2.setUsedIngredientId(2);
-		usedIn2.setUsedIngredientsName("Oil");
+		usedIn2.setUsedIngredientName("Oil");
 		Set<UsedIngredients> set = new HashSet<>();
 		set.add(usedIn1);
 		set.add(usedIn2);

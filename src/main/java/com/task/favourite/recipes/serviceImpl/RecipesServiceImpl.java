@@ -110,7 +110,7 @@ public class RecipesServiceImpl implements RecipesService {
 		BeanUtils.copyProperties(recipesDTO, recipe);
 		
 		Set<UsedIngredients> usedIngredients =recipesDTO.getUsedingredients().stream()
-				.map(ingredient-> new UsedIngredients(ingredient.getId(), ingredient.getUsedIngredientId(),ingredient.getUsedIngredientsName() ))
+				.map(ingredient-> new UsedIngredients(ingredient.getId(), ingredient.getUsedIngredientId(),ingredient.getUsedIngredientName() ))
        		 .collect(Collectors.toSet());
         
 		recipe.setUsedingredients(usedIngredients);
@@ -225,7 +225,7 @@ public class RecipesServiceImpl implements RecipesService {
 		
 		recipe.setUpdatedAt((DateUtil.getCurrentDateTime()));
 		Set<UsedIngredients> usedIngredients =recipesDTO.getUsedingredients().stream()
-				.map(ingredient-> new UsedIngredients(ingredient.getId(), ingredient.getUsedIngredientId(),ingredient.getUsedIngredientsName() ))
+				.map(ingredient-> new UsedIngredients(ingredient.getId(), ingredient.getUsedIngredientId(),ingredient.getUsedIngredientName() ))
        		 .collect(Collectors.toSet());
         
 		recipe.setUsedingredients(usedIngredients);
@@ -250,7 +250,7 @@ public class RecipesServiceImpl implements RecipesService {
 		Set<UsedIngredientsDTO> usedIngredients = new HashSet<UsedIngredientsDTO>();
 		if(!recipe.getUsedingredients().isEmpty()) {
 			usedIngredients =recipe.getUsedingredients().stream()
-					.map(ingredient-> new UsedIngredientsDTO(ingredient.getId(), ingredient.getUsedIngredientId(),ingredient.getUsedIngredientsName() ))
+					.map(ingredient-> new UsedIngredientsDTO(ingredient.getId(), ingredient.getUsedIngredientId(),ingredient.getUsedIngredientName() ))
 	       		 .collect(Collectors.toSet());
 		}
 		recipesDTO.setUsedingredients(usedIngredients);
