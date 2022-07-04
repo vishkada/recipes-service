@@ -15,7 +15,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import com.task.favourite.recipes.controller.UserController;
 import com.task.favourite.recipes.dto.UserRoleDTO;
 import com.task.favourite.recipes.dto.UsersDTO;
-import com.task.favourite.recipes.entity.Roles;
 import com.task.favourite.recipes.entity.UserRole;
 import com.task.favourite.recipes.entity.Users;
 import com.task.favourite.recipes.repository.UserRepository;
@@ -23,49 +22,14 @@ import com.task.favourite.recipes.repository.UserRepository;
 @SpringBootTest
 public class UserTest {
 
-	@MockBean
-	private  UserRepository userRepository;
-	
 	@Autowired
 	private UserController userController;
 	
-	@Test
-	public void addIngredientWithNegativeScenario () throws Exception {
-		UserRoleDTO  roleDTO = new UserRoleDTO();
-		roleDTO.setId(1);
-		roleDTO.setUserRoleId(1);
-		roleDTO.setUserRoleName("ADMIN");
-		Set<UserRoleDTO> roles = new HashSet<>();
-		roles.add(roleDTO);
-		
-		UsersDTO userDto = new UsersDTO();
-		userDto.setUserName("admin");
-		userDto.setPassword("password");
-		userDto.setRoles(roles);
-		
-		UserRole  role = new UserRole();
-		role.setId(1);
-		role.setUserRoleId(1);
-		role.setUserRoleName("ADMIN");
-		Set<UserRole> userRoles = new HashSet<>();
-		userRoles.add(role);
-		
-		Users user = new Users();
-		user.setUserName("admin");
-		user.setPassword("password");
-		user.setUserRole(userRoles);
-		
-		Mockito.when(userRepository.findByUserName(Mockito.anyString())).thenReturn( Optional.of(user));
-		try {  
-			UsersDTO userDTO = new UsersDTO();
-			userController.addUser(userDTO);
-		} catch(Exception e) {
-					
-		}
-	}
+	@MockBean
+	private  UserRepository userRepository;
 	
 	@Test
-	public void addIngredientWithPositiveScenario () throws Exception {
+	public void testAddUser () throws Exception {
 		UserRoleDTO  roleDTO = new UserRoleDTO();
 		roleDTO.setId(1);
 		roleDTO.setUserRoleId(1);
@@ -81,15 +45,14 @@ public class UserTest {
 		UserRole  role = new UserRole();
 		role.setId(1);
 		role.setUserRoleId(1);
-		role.setUserRoleName("ADMIN");
+		role.setUserRoleName("VIEVER");
 		Set<UserRole> userRoles = new HashSet<>();
 		userRoles.add(role);
 		
 		Users user = new Users();
-		user.setUserName("admin");
+		user.setUserName("viewe");
 		user.setPassword("password");
 		user.setUserRole(userRoles);
-		
 		
 		Mockito.when(userRepository.findByUserName(Mockito.anyString())).thenReturn( Optional.of(new Users()));
 		Mockito.when(userRepository.save(Mockito.any(Users.class))).thenReturn(user);

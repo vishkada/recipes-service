@@ -28,33 +28,18 @@ public class IntgredientTest {
 	private IngredientController ingredientController;
 
 	@Test
-	public void addIngredientWithPositiveScenario() throws Exception {
+	public void testAddIngredient() throws Exception {
 		Ingredients ingredient = new Ingredients();
 		ingredient.setIngredientId(120L);
-		ingredient.setIngredientName("Black Pepper");
+		ingredient.setIngredientName("Oil");
 
 		IngredientDTO ingredientDTO = new IngredientDTO();
 		Mockito.when(ingredientRepository.findByIngredientName(Mockito.anyString()))
 				.thenReturn(Optional.of(new Ingredients()));
 		Mockito.when(ingredientRepository.save(Mockito.any(Ingredients.class))).thenReturn(ingredient);
 		ingredientDTO = ingredientController.addIngredient(ingredientDTO);
+		
 		assertNotNull(ingredientDTO);
-	}
-
-	@Test
-	public void addIngredientWithNegativeScenario() throws Exception {
-		Ingredients ingredient = new Ingredients();
-		ingredient.setIngredientId(120L);
-		ingredient.setIngredientName("Black Pepper");
-		Mockito.when(ingredientRepository.findByIngredientName(Mockito.anyString()))
-				.thenReturn(Optional.of(ingredient));
-
-		try {
-			IngredientDTO ingredientDTO = new IngredientDTO();
-			ingredientDTO = ingredientController.addIngredient(ingredientDTO);
-		} catch (Exception e) {
-
-		}
 	}
 
 	/**
@@ -63,32 +48,18 @@ public class IntgredientTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void fetchIngredientsWithpositiveScenario() throws Exception {
+	public void testGetIngredients() throws Exception {
 		Ingredients ingredient = new Ingredients();
 		ingredient.setIngredientId(120L);
 		ingredient.setIngredientName("Black Pepper");
-
 		List<Ingredients> ingredientList = new ArrayList<>();
 		ingredientList.add(ingredient);
+		
 		Mockito.when(ingredientRepository.findAll()).thenReturn(ingredientList);
 		List<IngredientDTO> result = ingredientController.fetchIngredients();
+		
 		assertNotNull(result);
 
-	}
-
-	/**
-	 * fetchIngredients mocking the findAll() Method with null
-	 * 
-	 * @throws Exception
-	 */
-	@Test
-	public void fetchIngredientsWithNegativeScenario() throws Exception {
-		Mockito.when(ingredientRepository.findAll()).thenReturn(null);
-		try {
-			 ingredientController.fetchIngredients();
-		} catch (Exception ex) {
-
-		}
 	}
 
 	/**
@@ -97,28 +68,13 @@ public class IntgredientTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void deleteIngredientsWithPositiveScenario() throws Exception {
+	public void testDeleteIngredients() throws Exception {
 
 		Mockito.when(ingredientRepository.existsById(Mockito.anyLong())).thenReturn(true);
 		Mockito.doNothing().when(ingredientRepository).deleteById(Mockito.anyLong());
 		String result = ingredientController.deleteIngredient(10L);
+		
 		assertEquals("Ingredient is deleted successfully", result);
-	}
-
-	/**
-	 * deleteIngredient mocking the existsById() Method with false
-	 * 
-	 * @throws Exception
-	 */
-	@Test
-	public void deleteRecipesWithNegativeScenario() throws Exception {
-
-		Mockito.when(ingredientRepository.existsById(Mockito.anyLong())).thenReturn(false);
-		try {
-			ingredientController.deleteIngredient(10L);
-		} catch (Exception ex) {
-
-		}
 	}
 
 }
